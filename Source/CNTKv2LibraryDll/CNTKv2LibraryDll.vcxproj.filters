@@ -116,18 +116,26 @@
     </ClCompile>
     <ClCompile Include="proto\onnx\onnx_repo\onnx\checker.cc" />
     <ClCompile Include="proto\onnx\onnx_repo\onnx\common\assertions.cc" />
-    <ClCompile Include="proto\onnx\onnx_repo\onnx\defs\logical\old.cc" />
-    <ClCompile Include="proto\onnx\onnx_repo\onnx\defs\math\old.cc" />
-    <ClCompile Include="proto\onnx\onnx_repo\onnx\defs\nn\old.cc" />
-    <ClCompile Include="proto\onnx\onnx_repo\onnx\defs\rnn\old.cc" />
-    <ClCompile Include="proto\onnx\onnx_repo\onnx\defs\tensor\old.cc" />
-    <ClCompile Include="proto\onnx\onnx_repo\onnx\onnx-ml.pb.cc.VS_wrapper.cpp" />
-    <ClCompile Include="proto\onnx\onnx_repo\onnx\onnx-operators-ml.pb.cc.VS_wrapper.cpp" />
     <ClCompile Include="proto\onnx\onnx-ml.pb.cc.VS_wrapper.cpp">
       <Filter>proto\onnx</Filter>
     </ClCompile>
     <ClCompile Include="proto\onnx\onnx-operators-ml.pb.cc.VS_wrapper.cpp">
       <Filter>proto\onnx</Filter>
+    </ClCompile>
+    <ClCompile Include="proto\onnx\onnx_repo\onnx\defs\math\old.cc">
+      <Filter>proto\onnx\onnx_repo\onnx\defs\math</Filter>
+    </ClCompile>
+    <ClCompile Include="proto\onnx\onnx_repo\onnx\defs\nn\old.cc">
+      <Filter>proto\onnx\onnx_repo\onnx\defs\nn</Filter>
+    </ClCompile>
+    <ClCompile Include="proto\onnx\onnx_repo\onnx\defs\rnn\old.cc">
+      <Filter>proto\onnx\onnx_repo\onnx\defs\rnn</Filter>
+    </ClCompile>
+    <ClCompile Include="proto\onnx\onnx_repo\onnx\defs\tensor\old.cc">
+      <Filter>proto\onnx\onnx_repo\onnx\defs\tensor</Filter>
+    </ClCompile>
+    <ClCompile Include="proto\onnx\onnx_repo\onnx\defs\logical\old.cc">
+      <Filter>proto\onnx\onnx_repo\onnx\defs\logical</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
