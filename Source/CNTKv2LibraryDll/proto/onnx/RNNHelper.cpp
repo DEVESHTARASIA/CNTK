@@ -3,14 +3,9 @@
 // Licensed under the MIT license. See LICENSE.md file in the project root for full license information.
 //
 
-// both CNTK and Lotus define make_unique causing redefined conflict in linux build.
-// use this flag to avoid the conflict.
-#define CNTK_make_unique_already_defined = 1
-
 #include "proto/onnx/core/graph/model.h"
 
 #include "RNNHelper.h"
-
 #include "Operators.h"
 #include "Utils.h"
 

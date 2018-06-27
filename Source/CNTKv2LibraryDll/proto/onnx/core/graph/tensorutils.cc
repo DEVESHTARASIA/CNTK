@@ -2,7 +2,7 @@
 #include "core/graph/tensorutils.h"
 
 #include <algorithm>
-#include "gsl/span"
+// #include "gsl/span"
 
 namespace Lotus {
 namespace Utils {
@@ -23,10 +23,9 @@ Status TensorUtils::UnpackTensor(const onnx::TensorProto& tensor,
     return Status(StatusCategory::LOTUS, StatusCode::FAIL,
                   "UnpackTensor: the pre-allocate size does not match the size in proto");
 
-  const auto data = gsl::make_span(p_data, expected_size);
-
-  auto& string_data = tensor.string_data();
-  std::copy(string_data.cbegin(), string_data.cend(), data.begin());
+  for (auto& elem : tensor.string_data()) {
+    *p_data++ = elem;
+  }
 
   return Status::OK();
 }
@@ -58,8 +57,9 @@ Status TensorUtils::UnpackTensor(const onnx::TensorProto& tensor,
     return Status(StatusCategory::LOTUS, StatusCode::FAIL,
                   "UnpackTensor: the pre-allocate size does not match the size in proto");
 
-  const auto data = gsl::make_span(p_data, expected_size);
-  std::copy(tensor.int32_data().cbegin(), tensor.int32_data().cend(), data.begin());
+  for (auto& elem : tensor.int32_data()) {
+    *p_data++ = elem;
+  }
 
   return Status::OK();
 }
@@ -90,10 +90,9 @@ Status TensorUtils::UnpackTensor(const onnx::TensorProto& tensor,
   if (tensor.int32_data_size() != expected_size)
     return Status(StatusCategory::LOTUS, StatusCode::FAIL,
                   "UnpackTensor: the pre-allocate size does not match the size in proto");
-
-  const auto data = gsl::make_span(p_data, expected_size);
-  for (int i = 0; i < expected_size; i++)
-    data[i] = gsl::narrow_cast<uint16_t>(tensor.int32_data()[i]);
+  for (auto& elem : tensor.int32_data()) {
+    *p_data++ = (uint16_t)elem;
+  }
 
   return Status::OK();
 }

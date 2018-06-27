@@ -7,7 +7,9 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "gsl/pointers"
+#include "core/common/CommonSTD.h"
+
+// #include "gsl/pointers"
 #include "gsl/gsl_util"
 
 #include "core/common/common.h"
@@ -490,7 +492,7 @@ class GraphBase {
   // TODO(Task:135) See if GraphBase::GetNodesInTopologicalOrder can be made more correctly const
   // by forcing Resolve to have been called directly previously. Simple change is to return error if
   // GraphResolveNeeded is true.
-  Lotus::Common::Status GetNodesInTopologicalOrder(/*out*/ gsl::not_null<const std::vector<NodeIndex>**> pp_nodes) const;
+  Lotus::Common::Status GetNodesInTopologicalOrder(/*out*/ const std::vector<NodeIndex>** pp_nodes) const;
 
   // Mark Graph as needing Resolve() to be called
   GraphBase& SetGraphResolveNeeded() noexcept {
@@ -617,7 +619,7 @@ class GraphBase {
   // need custom versions to handle the unique_ptr's in nodes_
   LOTUS_DISALLOW_COPY_ASSIGN_AND_MOVE(GraphBase);
 
-  gsl::not_null<Node*> AllocateNode();
+  Node* AllocateNode();
 
   /**
     Release the node.
@@ -709,7 +711,7 @@ class Graph : public GraphBase {
   // Add/Remove/Get initial tensors for some graph inputs.
   void AddInitializedTensor(const TensorProto& tensor_proto);
   void RemoveInitializedTensor(const std::string& tensor_name);
-  bool GetInitializedTensor(const std::string& tensor_name, gsl::not_null<const TensorProto**> value) const;
+  bool GetInitializedTensor(const std::string& tensor_name, const TensorProto** value) const;
   const InitializedTensorSet& GetAllInitializedTensors() const noexcept;
   void CleanAllInitializedTensors() noexcept;
 
