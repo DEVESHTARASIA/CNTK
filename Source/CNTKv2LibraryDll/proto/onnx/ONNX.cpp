@@ -5,6 +5,7 @@
 
 #include "proto/onnx/core/graph/model.h"
 #include "proto/onnx/core/graph/graph.h"
+
 #include "ONNX.h"
 #include "CNTKToONNX.h"
 #include "Utils.h"
@@ -75,7 +76,7 @@ FunctionPtr ONNXFormat::Load(const std::wstring& filepath, const DeviceDescripto
 #ifdef _WIN32
     Lotus::Common::Status loadStatus = LotusIR::Model::Load(filepath, model);
 #else
-    Status loadStatus = LotusIR::Model::Load(ToString(filepath), &model);
+    Lotus::Common::Status loadStatus = LotusIR::Model::Load(ToString(filepath), model);
 #endif
     if (!loadStatus.IsOK())
         LogicError("Failed to load model: '%s'", loadStatus.ErrorMessage().c_str());

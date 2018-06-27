@@ -2,7 +2,7 @@
 
 #include "core/graph/graph.h"
 
-#include "gsl/pointers"
+// #include "gsl/pointers"
 
 namespace LotusIR {
 typedef std::unordered_map<std::string, std::string> ModelMetaData;
@@ -106,7 +106,7 @@ class Model {
   // if <is_onnx_domain_only> is true, then only onnx domain will be contained.
   // otherwise, ml domain will also be contained.
   void AddImportOpSets(bool is_onnx_domain_only,
-                       /*out*/ gsl::not_null<std::unordered_map<std::string, int>*> domain_to_version,
+                       /*out*/ std::unordered_map<std::string, int>* domain_to_version,
                        const ILotusOpSchemaCollection* local_registry);
 
   // Model data.

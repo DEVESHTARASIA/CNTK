@@ -14,7 +14,7 @@
 #include "core/graph/model.h"
 #include "core/graph/utils.h"
 #include "core/graph/schema_registry.h"
-#include "gsl/pointers"
+// #include "gsl/pointers"
 #include "gsl/gsl_util"
 
 using namespace Lotus;
@@ -27,7 +27,7 @@ Model::Model(const std::string& graph_name, bool is_onnx_domain_only, const Mode
   model_proto_->mutable_graph()->set_name(graph_name);
   model_metadata_ = model_metadata;
   for (auto& metadata : model_metadata_) {
-    const gsl::not_null<StringStringEntryProto*> prop = model_proto_->add_metadata_props();
+    auto prop = model_proto_->add_metadata_props();
     prop->set_key(metadata.first);
     prop->set_value(metadata.second);
   }
@@ -138,7 +138,7 @@ ModelProto Model::ToProto() {
 }
 
 void Model::AddImportOpSets(bool is_onnx_domain_only,
-                            /*out*/ gsl::not_null<std::unordered_map<std::string, int>*> domain_to_version,
+                            /*out*/ std::unordered_map<std::string, int>* domain_to_version,
                             const ILotusOpSchemaCollection* local_registry) {
   auto& domain_to_version_range_map = OpSchemaRegistry::DomainToVersionRange::Instance().Map();
   Domain_To_Version_Map local_domain_to_version_map = local_registry ? local_registry->DomainToVersionMap() : Domain_To_Version_Map();
@@ -158,7 +158,7 @@ void Model::AddImportOpSets(bool is_onnx_domain_only,
     }
 
     auto ignored = domain_to_version->insert({domainToVersionRange.first, max});
-    const gsl::not_null<OperatorSetIdProto*> opset_id_proto = model_proto_->add_opset_import();
+    auto opset_id_proto = model_proto_->add_opset_import();
     opset_id_proto->set_domain(domainToVersionRange.first);
     opset_id_proto->set_version(domainToVersionRange.second.second);
   }
@@ -174,7 +174,7 @@ void Model::AddImportOpSets(bool is_onnx_domain_only,
 
       if (domain_to_version_range_map.end() != domain_to_version_range_map.find(local_domain.first)) {
         auto ignored = domain_to_version->insert({local_domain.first, local_domain.second.second});
-        const gsl::not_null<OperatorSetIdProto*> opset_id_proto = model_proto_->add_opset_import();
+        auto opset_id_proto = model_proto_->add_opset_import();
         opset_id_proto->set_domain(local_domain.first);
         opset_id_proto->set_version(local_domain.second.second);
       }

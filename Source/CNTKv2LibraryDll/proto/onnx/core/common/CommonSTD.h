@@ -2,15 +2,17 @@
 #include <memory>
 #include <type_traits>
 
+#include "Platform.h"
+
 #if defined(__GNUC__) && !defined(__cpp_lib_make_unique) && !defined(CNTK_make_unique_already_defined)
 namespace std {
 
-    // make_unique was added in GCC 4.9.0. Requires using -std=c++11.
-    template <typename T, typename... Args>
-    unique_ptr<T> make_unique(Args &&... args)
-    {
-        return unique_ptr<T>(new T(forward<Args>(args)...));
-    }
+    // // make_unique was added in GCC 4.9.0. Requires using -std=c++11.
+    // template <typename T, typename... Args>
+    // unique_ptr<T> make_unique(Args &&... args)
+    // {
+    //     return unique_ptr<T>(new T(forward<Args>(args)...));
+    // }
 
     template<bool _Test,
         class _Ty = void>
