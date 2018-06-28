@@ -1176,7 +1176,6 @@ def test_TransposeAxes(tmpdir, dtype):
      (((9, 10), (11, 12)), ((13, 14), (15, 16)))),
 ))
 def test_Select(flag, if_true, if_false, tmpdir):
-    pytest.skip('RuntimeError: [ShapeInferenceError] Incompatible dimensions')
     flag = np.asarray(flag, dtype=np.float32)
     if_true = np.asarray(if_true, dtype=np.float32)
     if_false = np.asarray(if_false, dtype=np.float32)

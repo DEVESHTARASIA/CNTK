@@ -62,8 +62,6 @@ using std::vector;
 #define UNUSED_PARAMETER(x)
 #endif
 
-// std::vector<std::string> GetStackTrace();
-
 // __PRETTY_FUNCTION__ isn't a macro on gcc, so use a check for _MSC_VER
 // so we only define it as one for MSVC
 #if (_MSC_VER && !defined(__PRETTY_FUNCTION__))

@@ -8,12 +8,11 @@
 
 #include "ONNX.h"
 #include "CNTKToONNX.h"
+#include "ONNXToCNTK.h"
 #include "Utils.h"
 
 #include <iostream>
 #include <memory>
-
-#include "ONNXToCNTK.h"
 
 using namespace CNTK;
 
